@@ -9,6 +9,15 @@ import matplotlib.pyplot as plt
 import CW1_solvers as cw
 
 
+#%% Part 2b
+f = lambda x: (x-1)**2
+df = lambda x: 2 * (x-1)
+p0 = 0.1
+Nmax = 20
+TOL = 1e-16
+p_array,fig,ax = cw.newton_with_stopping(f,df,p0,Nmax,TOL,1.0)
+print(p_array)
+
 
 #%% Question 1a
 
