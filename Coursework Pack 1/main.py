@@ -115,6 +115,11 @@ print(cw.show_answer(cw.q2B_answer, 60))
 
 #%% Question 3
 
+
+import numpy as np
+import matplotlib.pyplot as plt
+import CW1_solvers as cw
+
 # Initialise
 f = lambda x: x**2 - 2
 p0 = 1
