@@ -19,6 +19,14 @@ import CW1_solvers as cw
 print("Q1a TEST0 check your docstrings are completed:")
 help(cw.fixedpoint_with_stopping)
 
+#Question 1c
+g = lambda x: x**2 * (3 - 2*x)
+p0 = 0.15
+Nmax = 20
+TOL = 1e-11
+p_array = cw.fixedpoint_with_stopping(g,p0,Nmax,TOL)
+print(f"Solution: {p_array}")
+
 
 # Initialise
 g = lambda x: 1/3*(x**2 - 1)

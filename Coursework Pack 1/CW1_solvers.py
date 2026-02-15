@@ -92,18 +92,18 @@ def fixedpoint_with_stopping(g, p0, Nmax, TOL, p=None, C=None, k=None):
 
 def q1B_answer():
     """
-    Answer to Question 1b(i): 
+    Answer to Question 1b(i): Linear
     
-    Answer to Question 1b(ii): 
+    Answer to Question 1b(ii): It is required that g'(p) = 0 for an order of convergence that is at least quadratic. For the p calculated in part a, g'(p) =/= 0 and therefore cnanot have any order of convergence that isn't linear.
         
     """
     pass
 
 def q1C_answer():
     """
-    Answer to Question 1c(i):
+    Answer to Question 1c(i): No
 
-    Answer to Question 1c(ii): 
+    Answer to Question 1c(ii): Since p -> 0, then |g'(p)| = 0, but 0 < k < 1. Hence Theorem 1.6 is not invoked since we require 0 < k < 1 to exist such that |g(p)|<=k
         
     """
     pass
