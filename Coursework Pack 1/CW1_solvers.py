@@ -335,13 +335,13 @@ def plot_convergence(p, f, df,  p0_newton, p0_sec, p1_sec,Nmax, TOL):
 
 def q4B_answer():
     """
-    Answer to Question 4b(i): 
+    Answer to Question 4b(i): Yes. f is continuous over the interval [-2,-1] and f(a)f(b) = -6 < 0. By theorem 1.1, we are guaranteed to have convergence
         
     
-    Answer to Question 4b(ii): 
+    Answer to Question 4b(ii): No. Newton's method is only guaranteed to converge if p0 lies in the interval [p-delta, p+delta] for some delta > 0. 
         
     
-    Answer to Question 4b(iii): 
+    Answer to Question 4b(iii): Yes, Newton's method and the secant method fails to converge because |p-p_n| does not decrease towards 0, and instead oscillates above 0
     
     """
     pass

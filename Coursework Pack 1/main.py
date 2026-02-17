@@ -149,8 +149,19 @@ TOL=10**-16
 fig, ax=cw.plot_convergence(p, f, df,  p0_newton, p0_sec, p1_sec,Nmax, TOL)
 
 
+
 #Q4b TEST. Checks how your answer to Question 4b is displayed:
+p = np.float64(-1.7692923542386314)
+f = lambda x: x**3 - 2*x + 2
+df = lambda x: 3*x**2 - 2
+p0_sec = -2
+p0_sec = -1
+p0_newton = 0
+Nmax = 30
+TOL = 1e-16
+fig,ax = cw.plot_convergence(p,f,df,p0_newton, p0_sec,p1_sec,Nmax,TOL)
 print(cw.show_answer(cw.q4B_answer, 80))
+
 
 
 #%% Question 5
