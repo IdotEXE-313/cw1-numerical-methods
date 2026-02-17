@@ -109,6 +109,47 @@ def q1C_answer():
     """
     pass
 
+#bisection_simple method taken from listing 1.2 of the lecture notes
+def bisection_simple(f,a,b,Nmax):
+    """
+    Bisection Method: Returns a numpy array of the 
+    sequence of approximations obtained by the bisection method.
+    
+    Inputs:
+    ----------
+    f : function
+        Input function for which the zero is to be found.
+    a : float
+        Left side of interval.
+    b : float
+        Right side of interval.
+    Nmax : integer
+        Number of iterations to be performed.
+
+    Returns
+    -------
+    p_array : numpy.ndarray, 
+            Array containing the sequence of approximations. 
+            The shape is (Nmax,)
+    """
+    
+    #Initialise numpy array of size Nmax
+    p_array=np.zeros(Nmax,)
+    
+    #Begin bisection method:
+    fa=f(a)
+    for n in range(Nmax):
+        p=(a+b)/2  # midpoint
+        fp=f(p)    # evaluate f at midpoint
+        #define new interval
+        if fp*fa>0:
+            a=p
+            fa=fp
+        else:
+            b=p
+        p_array[n]=p
+    return p_array
+
 def newton_with_stopping(f,df, p0,Nmax,TOL,p=None):
     """
     Implementation of the Newton method for fixed points and root finding
@@ -257,17 +298,19 @@ def plot_convergence(p, f, df,  p0_newton, p0_sec, p1_sec,Nmax, TOL):
     
 
     """
-    methods = ["newton", "secant"]
+    methods = ["newton", "secant", "bisection"]
 
     # map method name -> function that returns the iterate list/array
     runners = {
         "newton": newton_with_stopping(f, df, p0_newton, Nmax, TOL),
         "secant": secant_with_stopping(f, p0_sec, p1_sec, Nmax, TOL),
+        "bisection": bisection_simple(f, min(p0_sec,p1_sec), max(p0_sec, p1_sec),Nmax)
     }
     #define plotting style
     styles = {
         "newton": dict(marker="*", linestyle="--", color="blue",  label="Newton"),
         "secant": dict(marker="o", linestyle="-",  color="black", label="Secant"),
+        "bisection": dict(marker="*", linestyle="-", color="green", label="Bisection")
     }
 
 
