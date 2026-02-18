@@ -166,6 +166,9 @@ print(cw.show_answer(cw.q4B_answer, 80))
 
 #%% Question 5
 
+import numpy as np
+import CW1_solvers as cw
+
 #Initialise
 A = np.array([[1,-5,1],[10,0.0,20],[5,10,-1]], dtype=float)
 b = np.array([[7],[6],[4]], dtype=float)
@@ -189,3 +192,5 @@ print(f"x:\n {x}")
 #Q5c Test. Checks how your answer to Question 5c is displayed:
 print(cw.show_answer(cw.q5C_answer, 60))
 
+
+# %%

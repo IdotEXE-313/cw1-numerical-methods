@@ -349,12 +349,35 @@ def q4B_answer():
 
 def scaled_pivoting(A, b ,m):
     """
-    Add your docstrings here    
+    
     
     
     """
     
     #Write your code for scaled partial pivoting according to the instructions:
+
+    tildeA = np.hstack((A,b))
+    n = np.shape(tildeA)[0]
+    s_i = np.zeros(n)
+
+    #determine if a solution exists (terminates if any entry of the ith-jth entry is 0)
+    for i in range(0, n):
+        si_element = np.max(np.abs(tildeA[i, :n]))
+        if si_element == 0:
+            raise ValueError("This system does not have a unique solution")
+        s_i[i] = si_element
+    
+
+    for i in range(0, n-1):
+        ratios = np.max(np.abs(tildeA[i:n, i]) / s_i[i:n])
+        print(tildeA[i:n, i])
+        print(s_i[i:n])
+        p = i + np.argmax(ratios)
+
+
+    
+
+
 
     return tildeA, perm
 
