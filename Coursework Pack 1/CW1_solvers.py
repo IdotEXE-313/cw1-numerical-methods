@@ -443,9 +443,9 @@ def sp_solve(A,b):
 
 def q5C_answer():
     """
-    Answer to Question 5ci:
+    Answer to Question 5ci: x = [-1,1,1]
     
-    Answer to Question 5cii: 
+    Answer to Question 5cii: We observe catastrophic cancellation between 1 and 1+epsilon; since we lose precision for epsilon this small, the difference is indistinguishable from 0. This is an issue when dividing by the pivot which is essentially the same as dividing by 0.
         
     """
     pass

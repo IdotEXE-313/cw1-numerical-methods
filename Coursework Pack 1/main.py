@@ -189,8 +189,17 @@ print("Q5b TEST 1")
 x = cw.sp_solve(A, b)
 print(f"x:\n {x}")
 
+epsilon = 1e-16
+A = np.array([[1,1,1],[1,1+epsilon,1],[1,1,1+epsilon]])
+b = np.array([[1],[1+epsilon],[1+epsilon]])
+x = cw.sp_solve(A,b)
+
+print(f"x = \n{x}")
+
 #Q5c Test. Checks how your answer to Question 5c is displayed:
 print(cw.show_answer(cw.q5C_answer, 60))
+
+
 
 
 # %%
