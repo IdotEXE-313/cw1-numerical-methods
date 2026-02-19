@@ -373,18 +373,56 @@ def scaled_pivoting(A, b ,m):
         p = np.argmax(ratio) + i #ensures that for i>0, we get the correct row (e.g. for i=1, if p=1, then without adding i, we could be referring to row 2 when we need row 3 for a 3x3 matrix)
 
         if p != i:
-            tildeA[[p,i],:] = tildeA[[i,p],:]
+            tildeA[[p,i]] = tildeA[[i,p]]
             scaling_factors[[p,i]] = scaling_factors[[i,p]]
             perm[[p,i]] = perm[[i,p]]
         
+        #This section is taken from listing 2.7 (eliminates entries below the pivot)
         for j in range(i+1,n):
             mult = tildeA[j,i] / tildeA[i,i]
             tildeA[j,i] = 0
             tildeA[j, i+1:] -= mult * tildeA[i, i+1:]
-
+    
 
 
     return tildeA, perm
+
+def backward_substitution(tildeA):
+    """
+    Returns an array representing the solution x of Ax=b computed using
+    backward substitution after the augmented matrix tildeA has been sucesfully computed 
+    via Gaussian elimination. 
+    
+    Parameters
+    ----------
+    tildeA : numpy.ndarray of shape (n,n+1)
+        Array representing the augmented matrix [U v].
+    n : int
+        Integer that is at least 2.
+        
+    Returns
+    -------
+    x : numpy.ndarray of shape (n,1)
+        Array representing the solution x.
+    """
+    n = np.shape(tildeA)[0]
+    x=np.zeros([n,1])
+    
+    #check for a_{n,n} =0 
+    if tildeA[n-1, n-1] == 0:        
+      raise ValueError("The system does not have unique solution.")        
+
+    #start back substitution
+    x[n-1] = tildeA[n-1,n] / tildeA[n-1,n-1]
+    
+    for i in np.arange(n-1,0,-1):
+        #Computing the sum 
+        s = 0
+        for j in np.arange(i+1,n+1):
+            s = s + tildeA[i-1,j-1]*x[j-1]
+        x[i-1] = (tildeA[i-1,n] - s) / tildeA[i-1,i-1]
+    
+    return x
 
 def sp_solve(A,b):
     """
@@ -393,7 +431,11 @@ def sp_solve(A,b):
     """
     
     #Write your code to solve the system according to the instructions:
-    
+
+    n = np.shape(A)[0]
+    tildeA,_ = scaled_pivoting(A,b,n-1)
+    x = backward_substitution(tildeA)
+
     return x
 
             
