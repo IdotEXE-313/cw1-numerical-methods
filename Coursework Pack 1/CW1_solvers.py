@@ -358,24 +358,29 @@ def scaled_pivoting(A, b ,m):
 
     tildeA = np.hstack((A,b))
     n = np.shape(tildeA)[0]
-    s_i = np.zeros(n)
-
-    #determine if a solution exists (terminates if any entry of the ith-jth entry is 0)
+    perm = np.arange(n)
+    scaling_factors = np.zeros(n,)
+    
     for i in range(0, n):
-        si_element = np.max(np.abs(tildeA[i, :n]))
-        if si_element == 0:
-            raise ValueError("This system does not have a unique solution")
-        s_i[i] = si_element
-    
+        s_i = np.max(np.abs(tildeA[i,:n]))
+        if(s_i) == 0:
+            raise ValueError("There is no unique solution for this system of equations")
+        scaling_factors[i] = s_i
+        
+    for i in range(0, m):
+        col = np.abs(tildeA[i:n,i])
+        ratio = col / scaling_factors[i:]
+        p = np.argmax(ratio) + i #ensures that for i>0, we get the correct row (e.g. for i=1, if p=1, then without adding i, we could be referring to row 2 when we need row 3 for a 3x3 matrix)
 
-    for i in range(0, n-1):
-        ratios = np.max(np.abs(tildeA[i:n, i]) / s_i[i:n])
-        print(tildeA[i:n, i])
-        print(s_i[i:n])
-        p = i + np.argmax(ratios)
-
-
-    
+        if p != i:
+            tildeA[[p,i],:] = tildeA[[i,p],:]
+            scaling_factors[[p,i]] = scaling_factors[[i,p]]
+            perm[[p,i]] = perm[[i,p]]
+        
+        for j in range(i+1,n):
+            mult = tildeA[j,i] / tildeA[i,i]
+            tildeA[j,i] = 0
+            tildeA[j, i+1:] -= mult * tildeA[i, i+1:]
 
 
 
