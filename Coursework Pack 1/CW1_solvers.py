@@ -267,10 +267,10 @@ def secant_with_stopping(f:Callable[[float],float], p0:float, p1:float, Nmax:int
         denom_correction = 1e-15 if np.abs(q1 - q0) < 1e-15 else q1 - q0 #Maintain precision to avoid a zero division error when q1-q0 is sufficiently small
 
         p = p1 - (q1 * ((p1-p0)/(denom_correction)))
+        p_array[n] = p
 
         if(np.abs(p - p_array[n-1]) <= TOL*(1 + np.abs(p))): #Check for convergence based on our choice of TOL
             break
-        p_array[n] = p
         n += 1
 
         #Shifts iterates before performing the Secant method again
@@ -279,7 +279,7 @@ def secant_with_stopping(f:Callable[[float],float], p0:float, p1:float, Nmax:int
         p1 = p
         q1 = f(p)
     
-    return p_array[:n] #Ensures that we only return the non-zero part of the array
+    return p_array[:n+1] #Ensures that we only return the non-zero part of the array
 
 
 

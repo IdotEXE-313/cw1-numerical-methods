@@ -80,6 +80,9 @@ print(cw.show_answer(cw.q1C_answer, 60))
 #%% Question 2a
 
 # Initialise
+
+import numpy as np
+import CW1_solvers as cw
 f = lambda x: np.cos(x) - x
 df = lambda x: -np.sin(x) - 1
 p0 = 0
@@ -117,6 +120,8 @@ import matplotlib.pyplot as plt
 import CW1_solvers as cw
 
 # Initialise
+import numpy as np
+import CW1_solvers as cw
 f = lambda x: x**2 - 2
 p0 = 1
 p1 = 2
@@ -138,6 +143,8 @@ print(f"p_array shape: {p_array.shape}")
 
 
 #%% Question 4
+import numpy as np
+import CW1_solvers as cw
 
 # Initialise
 p = np.float64(0.73908513321516064165531207047)
