@@ -458,7 +458,7 @@ def backward_substitution(tildeA):
     
     return x
 
-def sp_solve(A,b):
+def sp_solve(A:np.ndarray,b:np.ndarray):
     """
     Fully solves the linear system Ax=b using scaled partial pivoting and returns the solution of 'x'
 
