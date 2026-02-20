@@ -19,7 +19,10 @@ print("Q1a TEST0 check your docstrings are completed:")
 help(cw.fixedpoint_with_stopping)
 
 #Question 1c
-g = lambda x: x**2 * (3 - 2*x)
+import numpy as np
+import matplotlib as plt
+import CW1_solvers as cw
+g = lambda x: 1/3*(x**2-1)
 p0 = 0.15
 Nmax = 20
 TOL = 1e-11
