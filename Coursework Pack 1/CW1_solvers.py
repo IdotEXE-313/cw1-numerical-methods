@@ -475,8 +475,6 @@ def sp_solve(A,b):
         The solution to the linear system Ax=b of shape (n,1)
     
     """
-    
-    #Write your code to solve the system according to the instructions:
 
     n = np.shape(A)[0]
     tildeA, _ = scaled_pivoting(A,b,n-1) #we select m = n-1 since we want to perform Gaussian elimination on every column of A
